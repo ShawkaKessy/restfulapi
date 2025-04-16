@@ -13,16 +13,17 @@ import java.util.List;
 public class UserProfileService {
 
     private final RestTemplate restTemplate;
-    private final String userServiceUrl = "http://localhost:8080/api/users/";
-    private final String orderServiceUrl = "http://localhost:8082/orders/user/";
 
     public UserProfileService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     public UserProfileDto getUserProfile(Long userId) {
+        String userServiceUrl = "http://localhost:8080/api/users/";
         User user = restTemplate.getForObject(userServiceUrl + userId, User.class);
+        String orderServiceUrl = "http://localhost:8082/orders/user/";
         Order[] orders = restTemplate.getForObject(orderServiceUrl + userId, Order[].class);
+        assert user != null;
         return new UserProfileDto(user, orders != null ? Arrays.asList(orders) : List.of());
     }
 }
