@@ -1,9 +1,9 @@
-package ru.netology.order_service.controller;
+package ru.netology.orderservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.netology.order_service.entity.Order;
-import ru.netology.order_service.repository.OrderRepository;
+import ru.netology.orderservice.model.Order;
+import ru.netology.orderservice.repository.OrderRepository;
 
 import java.util.List;
 
@@ -18,13 +18,8 @@ public class OrderController {
         this.orderRepository = orderRepository;
     }
 
-    @GetMapping
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
-    }
-
-    @PostMapping
-    public Order createOrder(@RequestBody Order order) {
-        return orderRepository.save(order);
+    @GetMapping("/user/{userId}")
+    public List<Order> getOrdersByUserId(@PathVariable Long userId) {
+        return orderRepository.findByUserId(userId);
     }
 }

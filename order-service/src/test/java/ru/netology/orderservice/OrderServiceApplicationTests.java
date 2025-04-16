@@ -1,10 +1,10 @@
-package ru.netology.user_service;
+package ru.netology.orderservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserServiceApplicationTests {
+class OrderServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
